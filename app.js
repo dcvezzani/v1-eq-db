@@ -5,6 +5,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+const { Pool } = require('pg');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
@@ -19,6 +25,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')))
+  .get('/db', async (req, res) => {
+      try {
+        const client = await pool.connect()
+        const result = await client.query('SELECT * FROM test_table');
+        const results = { 'results': (result) ? result.rows : null};
+        res.render('pages/db', results );
+        client.release();
+      } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+      }
+    })
   .get('/cool', (req, res) => res.send(cool()));
 
 app.use('/', indexRouter);
