@@ -16,6 +16,8 @@ https://github.com/babel/example-node-server
 
 #### Database
 
+Using the pg client directly:
+
 ```
 const { Pool } = require('pg');
 const pool = new Pool({
@@ -32,6 +34,26 @@ const pool = new Pool({
         const results = { 'results': (result) ? result.rows : null};
         res.json( results );
         client.release();
+      } catch (err) {
+        console.error(err);
+        res.send("Error " + err);
+      }
+    })
+```
+
+Using the knex client:
+
+```
+import db from './db.js'
+```
+
+```
+  .get('/db', (req, res) => {
+      try {
+        db("ward_members").select().asCallback((err, rows) => {
+          console.log("rows", err, rows);
+           res.json( rows );
+        })
       } catch (err) {
         console.error(err);
         res.send("Error " + err);
