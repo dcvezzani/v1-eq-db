@@ -60,3 +60,26 @@ import db from './db.js'
       }
     })
 ```
+
+### Resources
+
+Express and Knex cheat sheet:
+
+https://gist.github.com/laurenfazah/e0b0033cdc40a313d4710cc04e654556
+
+Database migrations guide:
+
+http://perkframework.com/v1/guides/database-migrations-knex.html
+
+JSON Generator (from schema)
+
+https://next.json-generator.com
+
+Babel setup for Express app
+
+https://github.com/babel/example-node-server
+
+Heroku cheat sheet
+* https://devhints.io/heroku
+* https://devcenter.heroku.com/articles/git-clone-heroku-app
+
