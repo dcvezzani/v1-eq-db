@@ -8,8 +8,8 @@
     "start": "nodemon ./lib/bin/www --exec babel-node", 
     "debug": "DEBUG=v1-eq-data:* nodemon ./lib/bin/www --exec babel-node", 
     "clean": "rm -rf dist && mkdir dist",
-    "build": "babel lib -d dist",
-    "serve": "npm run clean && npm run build && node dist/bin/www.js"
+    "build": "npm run clean && babel lib -d dist",
+    "serve": "npm run build && node dist/bin/www.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
