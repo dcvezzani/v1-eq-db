@@ -38,7 +38,7 @@ module.exports = {
       directory: './db/migrations'
     },
     seeds: {
-      directory: './db/seeds/production/eq'
+      directory: './db/seeds/production'
     },
     migrations: {
       tableName: 'knex_migrations'
