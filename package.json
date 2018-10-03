@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
-    "debug": "DEBUG=v1-eq-data:* npm start"
+    "start-nobabel": "node ./bin/www",
+    "debug-nobabel": "DEBUG=v1-eq-data:* npm start", 
+    "start": "nodemon ./bin/www --exec babel-node", 
+    "debug": "DEBUG=v1-eq-data:* nodemon ./bin/www --exec babel-node", 
+    "build": "babel lib -d dist",
+    "serve": "node dist/index.js"
   },
   "dependencies": {
     "cookie-parser": "~1.4.3",
@@ -13,7 +17,14 @@
     "express": "~4.16.0",
     "http-errors": "~1.6.2",
     "jade": "~1.11.0",
+    "knex": "^0.15.2",
     "morgan": "~1.9.0",
     "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "nodemon": "^1.18.4"
   }
 }
